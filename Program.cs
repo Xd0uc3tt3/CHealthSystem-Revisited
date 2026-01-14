@@ -6,6 +6,48 @@ using System.Threading.Tasks;
 
 namespace HealthSystem_Revisited
 {
+    public class Health
+    {
+        public int CurrentHealth;
+        public int MaxHealth;
+
+        public Health(int maxHealth)
+        {
+            if (maxHealth <= 0)
+            {
+                maxHealth = 1;
+            }
+
+            MaxHealth = maxHealth;
+            CurrentHealth = maxHealth;
+        }
+
+        public void TakeDamage(int ChangeAmount)
+        {
+            CurrentHealth -= ChangeAmount;
+
+            if (CurrentHealth < 0)
+            {
+                CurrentHealth = 0;
+            }
+        }
+
+        public void Heal(int ChangeAmount)
+        {
+            CurrentHealth += ChangeAmount;
+
+            if (CurrentHealth > MaxHealth)
+            {
+                CurrentHealth = MaxHealth;
+            }
+        }
+    }
+
+    public class Player
+    {
+        //
+    }
+
     internal class Program
     {
         static bool IsAlive = true;
@@ -13,6 +55,8 @@ namespace HealthSystem_Revisited
         {
             Console.WriteLine("Enter your name: ");
             string playerName = Console.ReadLine();
+
+            Random random = new Random();
 
 
             while (IsAlive == true)
@@ -24,6 +68,8 @@ namespace HealthSystem_Revisited
                 Console.WriteLine("Press D to take damage or H to heal.");
 
                 ConsoleKey key = Console.ReadKey(true).Key;
+
+                int ChangeAmount = random.Next(1, 21);
 
                 if (key == ConsoleKey.D)
                 {
