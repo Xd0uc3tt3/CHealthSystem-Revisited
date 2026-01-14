@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36518.9 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CHealthSystem-Revisited", "CHealthSystem-Revisited.csproj", "{F5F173CD-1821-4252-9058-67B397335BBE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F5F173CD-1821-4252-9058-67B397335BBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5F173CD-1821-4252-9058-67B397335BBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5F173CD-1821-4252-9058-67B397335BBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5F173CD-1821-4252-9058-67B397335BBE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B0332F38-B081-4973-9F33-F1B7406B2DF2}
+	EndGlobalSection
+EndGlobal
