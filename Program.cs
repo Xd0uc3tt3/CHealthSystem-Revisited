@@ -24,6 +24,11 @@ namespace HealthSystem_Revisited
 
         public void TakeDamage(int ChangeAmount)
         {
+            if (ChangeAmount < 0)
+            {
+                return;
+            }
+
             CurrentHealth -= ChangeAmount;
 
             if (CurrentHealth < 0)
@@ -34,6 +39,11 @@ namespace HealthSystem_Revisited
 
         public void Heal(int ChangeAmount)
         {
+            if (ChangeAmount < 0)
+            {
+                return;
+            }
+
             CurrentHealth += ChangeAmount;
 
             if (CurrentHealth > MaxHealth)
@@ -57,24 +67,23 @@ namespace HealthSystem_Revisited
             Shield = new Health(maxShield);
         }
 
-        public void TakeDamage(int amount)
+        public void TakeDamage(int ChangeAmount)
         {
-            if (amount < 0)
+            if (ChangeAmount < 0)
             {
-                Console.WriteLine("Warning: Damage cannot be negative.");
                 return;
             }
 
             if (Shield.CurrentHealth > 0)
             {
-                int shieldDamage = Math.Min(amount, Shield.CurrentHealth);
+                int shieldDamage = Math.Min(ChangeAmount, Shield.CurrentHealth);
                 Shield.TakeDamage(shieldDamage);
-                amount -= shieldDamage;
+                ChangeAmount -= shieldDamage;
             }
 
-            if (amount > 0)
+            if (ChangeAmount > 0)
             {
-                Health.TakeDamage(amount);
+                Health.TakeDamage(ChangeAmount);
             }
         }
 
@@ -133,14 +142,20 @@ namespace HealthSystem_Revisited
                 if (key == ConsoleKey.D)
                 {
                     Console.WriteLine($"You took damage.");
+                    player.TakeDamage(ChangeAmount);
                 }
                 else if (key == ConsoleKey.H)
                 {
                     Console.WriteLine($"You healed health.");
+                    player.Health.Heal(ChangeAmount);
                 }
             }
 
             Console.Clear();
+            ShowHUD(player);
+            Console.WriteLine();
+            Console.WriteLine("You died! Press any key...");
+            Console.ReadKey();
         }
 
         static void ShowHUD(Player player)
@@ -149,13 +164,13 @@ namespace HealthSystem_Revisited
             Console.WriteLine($"Player: {player.Name}");
 
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"Health: ");
+            Console.WriteLine($"Health: {player.Health.CurrentHealth}/{player.Health.MaxHealth}");
 
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine($"Shield:");
+            Console.WriteLine($"Shield: {player.Shield.CurrentHealth}/{player.Shield.MaxHealth}");
 
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"Status:");
+            Console.WriteLine($"Status: {player.GetStatus()}");
 
             Console.ResetColor();
         }
