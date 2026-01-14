@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace HealthSystem_Revisited
@@ -141,14 +142,23 @@ namespace HealthSystem_Revisited
 
                 if (key == ConsoleKey.D)
                 {
-                    Console.WriteLine($"You took damage.");
                     player.TakeDamage(ChangeAmount);
+                    Console.Clear();
+                    ShowHUD(player);
+                    Console.WriteLine();
+                    Console.WriteLine($"You took {ChangeAmount} damage.");
                 }
                 else if (key == ConsoleKey.H)
                 {
-                    Console.WriteLine($"You healed health.");
-                    player.Health.Heal(ChangeAmount);
+                    player.TakeDamage(ChangeAmount);
+                    Console.Clear();
+                    ShowHUD(player);
+                    Console.WriteLine();
+                    Console.WriteLine($"You healed {ChangeAmount} health.");
                 }
+
+                Console.ReadKey(true);
+
             }
 
             Console.Clear();
